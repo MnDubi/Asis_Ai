@@ -1,0 +1,9 @@
+fastapi==0.110.0               # 고속 비동기 API 프레임워크
+uvicorn==0.29.0                # FastAPI 실행 서버 (ASGI)
+transformers==4.39.1           # HuggingFace 모델 로딩용 (optional)
+sentence-transformers==2.6.1   # 문장 임베딩 추출 (KoSimCSE 등)
+scikit-learn>=1.4.1            # 유사도 계산이나 clustering 용
+pydantic==1.10.13              # 데이터 유효성 검사 (FastAPI 내부에서 쓰임)
+sqlalchemy==2.0.29             # ORM (원하면 DB 저장까지 가능)
+pymysql==1.1.0                 # MySQL 연동 드라이버 (SQLAlchemy용)
+python-dotenv==1.1.0
