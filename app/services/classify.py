@@ -1,13 +1,14 @@
 from app.services.embedding import get_embedding, cosine_similarity
 from app.utils.gpt_local import generate_category_name
+from app.services.embedding import get_embedding, cosine_similarity
+from app.utils.gpt_local import generate_category_name
+from app.db.category_db import get_category_embeddings 
+from app.db.category_db import save_category_to_db
 
-def classify_category(todo: str, category_vectors: dict) -> dict:
-    """
-    투두 문장을 기반으로 카테고리를 분류하거나 새로 생성한다.
-    """
+def classify_category(todo: str) -> dict:
+    category_vectors = get_category_embeddings() 
     todo_vec = get_embedding(todo)
 
-    # Step 1: 기존 카테고리들과 cosine similarity 계산
     best_match = None
     max_sim = 0.0
     for name, vec in category_vectors.items():
@@ -16,7 +17,6 @@ def classify_category(todo: str, category_vectors: dict) -> dict:
             max_sim = sim
             best_match = name
 
-    # Step 2: 유사한 카테고리 있으면 바로 반환
     if max_sim >= 0.7:
         return {
             "category": best_match,
@@ -25,8 +25,11 @@ def classify_category(todo: str, category_vectors: dict) -> dict:
             "embedding": todo_vec.tolist()
         }
 
-    # Step 3: GPT로 새 카테고리 생성
     new_category = generate_category_name(todo)
+    new_vec = get_embedding(new_category)
+
+    # 자동 저장
+    save_category_to_db(new_category, new_vec)
 
     return {
         "category": new_category,

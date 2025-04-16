@@ -8,7 +8,6 @@ router = APIRouter()
 # 요청 스키마
 class ClassifyRequest(BaseModel):
     todo: str
-    category_vectors: Dict[str, List[float]]  # {"공부": [...], "운동": [...]}
 
 # 응답 스키마
 class ClassifyResponse(BaseModel):
@@ -20,7 +19,6 @@ class ClassifyResponse(BaseModel):
 @router.post("/classify-category", response_model=ClassifyResponse)
 def classify(req: ClassifyRequest):
     try:
-        result = classify_category(req.todo, req.category_vectors)
-        return result
+        return classify_category(req.todo)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
