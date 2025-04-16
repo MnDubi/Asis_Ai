@@ -18,6 +18,8 @@ def get_category_embeddings() -> dict:
 def save_category_to_db(name: str, embedding: list):
     from app.config import SessionLocal
     import json
+    from sqlalchemy import text
+
     db = SessionLocal()
     try:
         embedding_json = json.dumps(embedding)
@@ -28,4 +30,5 @@ def save_category_to_db(name: str, embedding: list):
         db.commit()
     finally:
         db.close()
+
 
