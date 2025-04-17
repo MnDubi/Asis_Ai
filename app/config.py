@@ -2,12 +2,14 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 import os 
 from dotenv import load_dotenv
+from urllib.parse import quote_plus
+
 
 # .env 파일 로드
 load_dotenv()
 
 MYSQL_USER = os.getenv("MYSQL_USER", "root")
-MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD", "password")
+MYSQL_PASSWORD = quote_plus(os.getenv("MYSQL_PASSWORD"))
 MYSQL_HOST = os.getenv("MYSQL_HOST", "localhost")
 MYSQL_PORT = os.getenv("MYSQL_PORT", "3306")
 MYSQL_DB = os.getenv("MYSQL_DB", "todo_db")

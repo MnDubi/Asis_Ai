@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from app.services.classify import classify_category
 from typing import Dict, List, Any
+import traceback
 
 from app.services.classify import classify_category
 from app.services.embedding import get_embedding
@@ -26,9 +27,12 @@ class AddCategoryRequest(BaseModel):
 
 @router.post("/classify-category", response_model=ClassifyResponse)
 def classify(req: ClassifyRequest):
+    print(f"[🔥 classify 요청] todo = {req.todo}")
     try:
         return classify_category(req.todo)
     except Exception as e:
+        print("[❌ 예외 발생]")
+        traceback.print_exc()  # ← 에러 스택 출력
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/add-category")
