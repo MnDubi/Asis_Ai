@@ -7,3 +7,4 @@ pydantic==1.10.13              # 데이터 유효성 검사 (FastAPI 내부에�
 sqlalchemy==2.0.29             # ORM (원하면 DB 저장까지 가능)
 pymysql==1.1.0                 # MySQL 연동 드라이버 (SQLAlchemy용)
 python-dotenv==1.1.0
+cryptography>=41.0.0    

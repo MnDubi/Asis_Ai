@@ -9,7 +9,7 @@ from urllib.parse import quote_plus
 load_dotenv()
 
 MYSQL_USER = os.getenv("MYSQL_USER", "root")
-MYSQL_PASSWORD = quote_plus(os.getenv("MYSQL_PASSWORD"))
+MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD") 
 MYSQL_HOST = os.getenv("MYSQL_HOST", "localhost")
 MYSQL_PORT = os.getenv("MYSQL_PORT", "3306")
 MYSQL_DB = os.getenv("MYSQL_DB", "todo_db")
