@@ -19,7 +19,7 @@ def classify_category(todo: str) -> dict:
             best_match = name
             
 
-    if max_sim >= 0.55:
+    if max_sim >= 0.43: # 유사도 기준
         return {
             "category": best_match,
             "similarity": round(max_sim, 4),
