@@ -3,6 +3,7 @@ from sqlalchemy.orm import sessionmaker
 import os 
 from dotenv import load_dotenv
 from urllib.parse import quote_plus
+from urllib.parse import quote_plus
 
 
 # .env 파일 로드
@@ -14,8 +15,10 @@ MYSQL_HOST = os.getenv("MYSQL_HOST")
 MYSQL_PORT = os.getenv("MYSQL_PORT")
 MYSQL_DB = os.getenv("MYSQL_DB")
 
-DATABASE_URL = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
-
+DATABASE_URL = (
+    f"mysql+pymysql://{MYSQL_USER}:{quote_plus(MYSQL_PASSWORD)}"
+    f"@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
+)
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 
