@@ -6,13 +6,9 @@ import numpy as np
 model = SentenceTransformer("jhgan/ko-sbert-sts")
 
 def get_embedding(text: str) -> np.ndarray:
-    """
-    주어진 문장을 임베딩 벡터로 변환
-    """
+    # 주어진 문장을 임베딩 벡터로 변환
     return model.encode(text)
 
 def cosine_similarity(vec1: list, vec2: list) -> float:
-    """
-    두 벡터 간 cosine similarity 계산
-    """
+    # 두 벡터 간 cosine similarity 계산
     return float(util.cos_sim(vec1, vec2)[0][0])
