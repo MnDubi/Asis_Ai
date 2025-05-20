@@ -9,9 +9,6 @@ def generate_category_name(todo: str) -> str:
     출력: 한 단어 (예: 운동, 여행, 공부, 청소, 계획, 쇼핑, 독서, 요리, 정리, 회의)
     """
 
-
-
-
     print("[🟡 요청 전송]")
     print(f"모델: {OLLAMA_MODEL_NAME}")
     print(f"프롬프트: {prompt.strip()}")
