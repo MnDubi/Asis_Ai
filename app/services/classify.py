@@ -13,7 +13,7 @@ def classify_category(todo: str) -> dict:
     max_sim = 0.0
     for name, vec in category_vectors.items():
         sim = cosine_similarity(todo_vec, vec)
-        print(f"[🔍 비교 중] {name} vs {todo} → 유사도: {sim}")
+        # print(f"[비교 중] {name} vs {todo} → 유사도: {sim}")
         if sim > max_sim:
             max_sim = sim
             best_match = name
