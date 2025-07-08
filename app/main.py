@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI(
     title="WPSCP Category Classifier API",
     description="투두리스트 자동 카테고리 분류 API",
-    version="1.0.0"
+    version="1.1.0"
 )
 
 # CORS 허용 (Spring 연동 대비)
